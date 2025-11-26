@@ -1,0 +1,13 @@
+package com.mycompany.airplanereservation;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class AirplaneReservationSystemApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}

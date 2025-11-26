@@ -1,0 +1,163 @@
+/* Main styles for SkyBook Airline Reservation System */
+
+:root {
+    --primary-color: #06b6d4;
+    --secondary-color: #0ea5a4;
+    --bg-color: #f0f4f8;
+    --text-color: #0f172a;
+    --muted-color: #6b7280;
+    --success-color: #10b981;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: var(--primary-color);
+}
+
+nav a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.form-container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.form-container h2 {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #e6e9ee;
+    font-size: 14px;
+}
+
+button.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+button.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+thead th {
+    text-align: left;
+    padding: 10px;
+    background-color: #f9fafb;
+    color: var(--muted-color);
+    cursor: pointer;
+}
+
+tbody td {
+    padding: 12px 10px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.flight-list ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.flight-list li {
+    padding: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flight-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.flight-list th, .flight-list td {
+
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+.flight-list th {
+    background-color: #f9fafb;
+    color: var(--muted-color);
+}
+
+.flight-list tr:nth-child(even) {
+    background-color: #f0f4f8;
+}
+
+
+.success-message {
+    color: var(--success-color);
+    margin-top: 10px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: var(--muted-color);
+    font-size: 14px;
+}
