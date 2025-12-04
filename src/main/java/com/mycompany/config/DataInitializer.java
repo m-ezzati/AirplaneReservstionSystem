@@ -42,4 +42,25 @@ public class DataInitializer {
         };
     }
 
+
+    @Bean
+    public CommandLineRunner createUser(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        return args -> {
+            boolean userExists = userRepository.findByUsername("Mary").isPresent();
+
+            if (!userExists) {
+                User user = User.builder()
+                        .username("Mary")
+                        .password(passwordEncoder.encode("123"))
+                        .email("mary@email.com")
+                        .role(Role.ROLE_USER)
+                        .build();
+
+                userRepository.save(user);
+                System.out.println("Mary user created: username= Mary, password= 123");
+            } else {
+                System.out.println("User Mary is already exists!");
+            }
+        };
+    }
 }

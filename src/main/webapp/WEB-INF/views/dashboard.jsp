@@ -79,10 +79,10 @@
                 <tbody>
                 <c:forEach items="${flights}" var="flight">
                     <tr>
-                        <td>${flight.flightNumber}</td>
-                        <td>${flight.origin} -> ${flight.destination}</td>
-                        <td>${flight.departureTime} -> ${flight.arrivalTime}</td>
-                        <td>$${flight.price} - ${flight.flightType}</td>
+                        <td>${flight.flightNumber()}</td>
+                        <td>${flight.origin()} -> ${flight.destination()}</td>
+                        <td>${flight.departureTime()} -> ${flight.arrivalTime()}</td>
+                        <td>$${flight.price()} - ${flight.flightType()}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

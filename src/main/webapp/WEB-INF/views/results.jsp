@@ -21,18 +21,18 @@
 
 <main>
     <section class="flight-results">
-        <div class="filters">
-            <label for="sortSelect">Sort by:</label>
-            <select id="sortSelect">
-                <option value="">None</option>
-                <option value="price-asc">Price</option>
-<%--                <option value="price-desc">Price</option>--%>
-                <option value="airline-asc">Airline</option>
-<%--                <option value="airline-desc">Airline</option>--%>
-                <option value="route-asc">Route</option>
-<%--                <option value="route-desc">Route</option>--%>
-            </select>
-        </div>
+<%--        <div class="filters">--%>
+<%--            <label for="sortSelect">Sort by:</label>--%>
+<%--            <select id="sortSelect">--%>
+<%--                <option value="">None</option>--%>
+<%--                <option value="price-asc">Price</option>--%>
+<%--&lt;%&ndash;                <option value="price-desc">Price</option>&ndash;%&gt;--%>
+<%--                <option value="airline-asc">Airline</option>--%>
+<%--&lt;%&ndash;                <option value="airline-desc">Airline</option>&ndash;%&gt;--%>
+<%--                <option value="route-asc">Route</option>--%>
+<%--&lt;%&ndash;                <option value="route-desc">Route</option>&ndash;%&gt;--%>
+<%--            </select>--%>
+<%--        </div>--%>
 
 
             <c:if test="${empty results}">
@@ -57,13 +57,13 @@
                     <tbody id="flightsTbody">
                     <c:forEach items="${results}" var="f">
                         <tr>
-                            <td>${f.airlineName}</td>
-                            <td>${f.flightNumber}</td>
-                            <td>${f.origin}</td>
-                            <td>${f.destination}</td>
-                            <td>${f.departureTime}</td>
-                            <td>$${f.price}</td>
-                            <td><button class="btn-primary" onclick="bookFlight('${f.id}')">Book</button></td>
+                            <td>${f.airlineName()}</td>
+                            <td>${f.flightNumber()}</td>
+                            <td>${f.origin()}</td>
+                            <td>${f.destination()}</td>
+                            <td>${f.departureTime()}</td>
+                            <td>$${f.price()}</td>
+                            <td><button class="btn-primary" onclick="bookFlight('${f.id()}')">Book</button></td>
 
                         </tr>
                     </c:forEach>

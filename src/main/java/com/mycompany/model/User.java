@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import com.mycompany.model.enums.Role;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
@@ -27,4 +29,6 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToMany(mappedBy = "user")
+    private List<Booking> bookingList;
 }
