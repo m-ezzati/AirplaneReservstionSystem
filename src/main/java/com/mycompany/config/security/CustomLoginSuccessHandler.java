@@ -19,8 +19,6 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
                                         Authentication authentication)
             throws IOException, ServletException {
 
-//        request.getSession().setAttribute("user", authentication.getPrincipal());
-
         CustomUserDetails details = (CustomUserDetails) authentication.getPrincipal();
         User user = details.getUser();
         request.getSession().setAttribute("user", user);
