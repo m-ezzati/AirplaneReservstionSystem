@@ -63,15 +63,19 @@
                             <td>${f.destination()}</td>
                             <td>${f.departureTime()}</td>
                             <td>$${f.price()}</td>
-                            <td><button class="btn-primary" onclick="bookFlight('${f.id()}')">Book</button></td>
+                            <td>
+                                <form action="<c:url value='/booking/add' />" method="post">
+                                    <input type="hidden" name="flightId" value="${f.id()}" />
+                                    <button type="submit" class="btn-primary">Book</button>
+                                </form>
+                            </td>
+<%--                            <td><button class="btn-primary" onclick="bookFlight('${f.id()}')">Book</button></td>--%>
 
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
             </c:if>
-
-
 
     </section>
 </main>

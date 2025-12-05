@@ -14,7 +14,6 @@
     <nav>
         <a href="<c:url value='/' />">Home</a>
         <a href="<c:url value='/search' />">Search Flights</a>
-<%--        <a href="<c:url value='/logout' />">Logout</a>--%>
     </nav>
 </header>
 
@@ -24,7 +23,7 @@
         <form:errors path="departureTime" cssClass="error"/>
         <form:errors path="price" cssClass="error"/>
         <h2>Add New Flight</h2>
-        <form action="<c:url value='/dashboard/add-flight' />" method="post">
+        <form action="<c:url value='/admin/dashboard/add-flight' />" method="post">
 
             <label for="flightNumber">Airline Number:</label>
             <input type="text" name="flightNumber" required>
@@ -46,6 +45,9 @@
 
             <label for="price">Price ($):</label>
             <input type="number" name="price" min="0" step="0.01" required>
+
+            <label for="totalSeats">Total Seats:</label>
+            <input type="number" name="totalSeats" min="1" required>
 
             <label for="flightType">Class:</label>
             <select name="flightType">

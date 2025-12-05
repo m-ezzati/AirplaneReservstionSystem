@@ -15,13 +15,13 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/dashboard")
-public class DashboardController {
+@RequestMapping("/admin/dashboard")
+public class AdminDashboardController {
 
     private final FlightService flightService;
     private final FlightMapper flightMapper;
 
-    public DashboardController(FlightService flightService, FlightMapper flightMapper) {
+    public AdminDashboardController(FlightService flightService, FlightMapper flightMapper) {
         this.flightService = flightService;
         this.flightMapper = flightMapper;
     }
@@ -47,7 +47,7 @@ public class DashboardController {
         }
         flightService.saveFlight(flightMapper.toEntity(dto));
 
-        return "redirect:/dashboard";
+        return "redirect:/admin/dashboard";
     }
 
 }

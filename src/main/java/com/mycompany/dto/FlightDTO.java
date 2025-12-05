@@ -37,9 +37,9 @@ public record FlightDTO(
 
         @NotNull(message = "Total seats is required")
         @Min(value = 1, message = "There must be at least 1 seat")
-        Integer TotalSeats,
+        Integer totalSeats,
 
-        Integer ReservedSeat,
+        Integer reservedSeat,
 
         @NotNull(message = "Flight type is required")
         FlightType flightType
