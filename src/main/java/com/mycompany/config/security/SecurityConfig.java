@@ -1,4 +1,4 @@
-package com.mycompany.config;
+package com.mycompany.config.security;
 
 import com.mycompany.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
@@ -18,10 +18,12 @@ public class SecurityConfig {
 
     private final CustomUserDetailsService customUserDetailsService;
     private final CustomLoginSuccessHandler customLoginSuccessHandler;
+    private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
-    public SecurityConfig(CustomUserDetailsService customUserDetailsService, CustomLoginSuccessHandler customLoginSuccessHandler) {
+    public SecurityConfig(CustomUserDetailsService customUserDetailsService, CustomLoginSuccessHandler customLoginSuccessHandler, CustomAccessDeniedHandler customAccessDeniedHandler) {
         this.customUserDetailsService = customUserDetailsService;
         this.customLoginSuccessHandler = customLoginSuccessHandler;
+        this.customAccessDeniedHandler = customAccessDeniedHandler;
     }
 
     @Bean
@@ -45,8 +47,8 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable);
 
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/do-login", "/css/**", "/js/**").permitAll()
-                        .requestMatchers("/dashboard").hasRole("ADMIN")
+                        .requestMatchers("/login", "/do-login", "/access-denied", "/css/**", "/js/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 );
 
@@ -57,11 +59,15 @@ public class SecurityConfig {
                 .failureUrl("/login?error=true")
                 .permitAll()
         );
+
         http.logout(logout -> logout
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout=true")
         );
 
+        http.exceptionHandling(exception ->
+                exception.accessDeniedHandler(customAccessDeniedHandler)
+        );
         http.authenticationProvider(authenticationProvider());
 
         return http.build();

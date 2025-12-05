@@ -1,4 +1,4 @@
-package com.mycompany.config;
+package com.mycompany.config.security;
 
 import com.mycompany.model.User;
 import org.springframework.security.core.GrantedAuthority;

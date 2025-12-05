@@ -1,9 +1,8 @@
 package com.mycompany.service;
 
-import com.mycompany.config.CustomUserDetails;
+import com.mycompany.config.security.CustomUserDetails;
 import com.mycompany.model.User;
 import com.mycompany.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
