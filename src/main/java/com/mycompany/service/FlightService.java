@@ -2,6 +2,7 @@ package com.mycompany.service;
 
 import com.mycompany.model.Flight;
 import com.mycompany.repository.FlightRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,12 +25,19 @@ public class FlightService {
         return flightRepository.findAll();
     }
 
-    public Optional<Flight> getFlightById(Long id){
+    public Optional<Flight> getFlightById(Long id) {
         return flightRepository.findById(id);
     }
 
     public List<Flight> findByOriginAndDestination(String origin, String destination) {
         return flightRepository.findByOriginAndDestination(origin, destination);
+    }
+
+    public boolean hasAvailableSeat(Long flightId) {
+        Flight flight = getFlightById(flightId)
+                .orElseThrow(() -> new EntityNotFoundException("flight not found"));
+
+        return flight.hasCapacity();
     }
 
 }

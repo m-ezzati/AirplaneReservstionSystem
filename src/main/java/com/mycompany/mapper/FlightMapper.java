@@ -17,8 +17,8 @@ public class FlightMapper {
                 flight.getPrice(),
                 flight.getDepartureTime(),
                 flight.getArrivalTime(),
+                flight.getTotalSeats(),
                 flight.getReservedSeats(),
-                flight.getTotalSeat(),
                 flight.getFlightType()
         );
     }
@@ -32,8 +32,8 @@ public class FlightMapper {
                 .price(dto.price())
                 .departureTime(dto.departureTime())
                 .arrivalTime(dto.arrivalTime())
-                .totalSeat(dto.totalSeats())
-                .reservedSeats(dto.reservedSeat())
+                .totalSeats(dto.totalSeats())
+                .reservedSeats(dto.reservedSeats())
                 .flightType(dto.flightType())
                 .build();
     }

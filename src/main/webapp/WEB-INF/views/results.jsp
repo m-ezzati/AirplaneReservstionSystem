@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight Results | SkyBook</title>
     <link rel="stylesheet" href="/css/main.css">
-
 </head>
 <body>
 <header>
@@ -21,61 +20,61 @@
 
 <main>
     <section class="flight-results">
-<%--        <div class="filters">--%>
-<%--            <label for="sortSelect">Sort by:</label>--%>
-<%--            <select id="sortSelect">--%>
-<%--                <option value="">None</option>--%>
-<%--                <option value="price-asc">Price</option>--%>
-<%--&lt;%&ndash;                <option value="price-desc">Price</option>&ndash;%&gt;--%>
-<%--                <option value="airline-asc">Airline</option>--%>
-<%--&lt;%&ndash;                <option value="airline-desc">Airline</option>&ndash;%&gt;--%>
-<%--                <option value="route-asc">Route</option>--%>
-<%--&lt;%&ndash;                <option value="route-desc">Route</option>&ndash;%&gt;--%>
-<%--            </select>--%>
-<%--        </div>--%>
 
+        <c:if test="${empty results}">
+            <div id="noResults">
+                No flights found.
+            </div>
+        </c:if>
 
-            <c:if test="${empty results}">
-                <div id="noResults">
-                    No flights found.
-                </div>
-            </c:if>
+        <c:if test="${not empty results}">
+            <table>
+                <thead>
+                <tr>
+                    <th data-type="string">Airline</th>
+                    <th data-type="string">Flight Number</th>
+                    <th data-type="string">Origin</th>
+                    <th data-type="string">Destination</th>
+                    <th data-type="datetime">Date & Time</th>
+                    <th data-type="number">Price</th>
+                    <th data-type="number">Available Seats</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
 
-            <c:if test="${not empty results}">
-                <table>
-                    <thead>
+                <tbody id="flightsTbody">
+                <c:forEach items="${results}" var="f">
                     <tr>
-                        <th data-type="string">Airline</th>
-                        <th data-type="string">Flight Number</th>
-                        <th data-type="string">Origin</th>
-                        <th data-type="string">Destination</th>
-                        <th data-type="datetime">Date & Time</th>
-                        <th data-type="number">Price</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody id="flightsTbody">
-                    <c:forEach items="${results}" var="f">
-                        <tr>
-                            <td>${f.airlineName()}</td>
-                            <td>${f.flightNumber()}</td>
-                            <td>${f.origin()}</td>
-                            <td>${f.destination()}</td>
-                            <td>${f.departureTime()}</td>
-                            <td>$${f.price()}</td>
-                            <td>
-                                <form action="<c:url value='/booking/add' />" method="post">
-                                    <input type="hidden" name="flightId" value="${f.id()}" />
-                                    <button type="submit" class="btn-primary">Book</button>
-                                </form>
-                            </td>
-<%--                            <td><button class="btn-primary" onclick="bookFlight('${f.id()}')">Book</button></td>--%>
+                        <td>${f.airlineName()}</td>
+                        <td>${f.flightNumber()}</td>
+                        <td>${f.origin()}</td>
+                        <td>${f.destination()}</td>
+                        <td>${f.departureTime()}</td>
+                        <td>$${f.price()}</td>
 
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </c:if>
+                        <td>
+                                ${f.totalSeats() - f.reservedSeats()}
+                        </td>
+
+                        <td>
+                            <c:choose>
+                                <c:when test="${f.reservedSeats() < f.totalSeats()}">
+                                    <form action="<c:url value='/booking/add' />" method="post">
+                                        <input type="hidden" name="flightId" value="${f.id()}" />
+                                        <button type="submit" class="btn-primary">Book</button>
+                                    </form>
+                                </c:when>
+
+                                <c:otherwise>
+                                    <button class="btn-primary" style="background: gray;" disabled>Full</button>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
 
     </section>
 </main>

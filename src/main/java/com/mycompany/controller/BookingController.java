@@ -36,17 +36,21 @@ public class BookingController {
             return "redirect:/login";
         }
 
-
-
         Flight flight = flightService.getFlightById(flightId)
                 .orElseThrow(()->new EntityNotFoundException("flight not found"));
 
-        Booking booking = new Booking();
-        booking.setFlight(flight);
-        booking.setUser(user);
-        bookingService.save(booking);
-        System.out.println("flight booked for user");
-        return "redirect:/user/dashboard";
+        try {
+
+            Booking booking = new Booking();
+            booking.setFlight(flight);
+            booking.setUser(user);
+            bookingService.save(booking);
+            return "redirect:/user/dashboard";
+        }catch (IllegalStateException e){
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("flight", flight);
+            return "search";
+        }
     }
 
 }

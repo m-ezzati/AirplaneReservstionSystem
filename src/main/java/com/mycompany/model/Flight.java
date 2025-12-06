@@ -41,7 +41,7 @@ public class Flight extends BaseEntity {
     private LocalDateTime arrivalTime;
 
     @Column(nullable = false)
-    private Integer totalSeat;
+    private Integer totalSeats;
 
     @Builder.Default
     @Column(columnDefinition = "int default 0")
@@ -53,5 +53,10 @@ public class Flight extends BaseEntity {
 
     @OneToMany(mappedBy = "flight")
     private List<Booking> bookings;
+
+    @Transient
+    public boolean hasCapacity() {
+        return reservedSeats < totalSeats;
+    }
 
 }

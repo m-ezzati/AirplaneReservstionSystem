@@ -40,8 +40,10 @@ public class FlightController {
                 .map(flightMapper::toDto)
                 .toList();
 
+
         model.addAttribute("results", results);
 
+        System.out.println("result" +  results);
         return "results";
 
     }
