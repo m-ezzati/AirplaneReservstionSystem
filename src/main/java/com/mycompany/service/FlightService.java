@@ -5,6 +5,8 @@ import com.mycompany.repository.FlightRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +33,10 @@ public class FlightService {
 
     public List<Flight> findByOriginAndDestination(String origin, String destination) {
         return flightRepository.findByOriginAndDestination(origin, destination);
+    }
+
+    public List<Flight> findByOriginAndDestinationAndDepartureDate(String origin, String destination, LocalDateTime departureTime) {
+        return flightRepository.findByOriginAndDestinationAndDepartureTimeAfter(origin, destination, departureTime);
     }
 
     public boolean hasAvailableSeat(Long flightId) {

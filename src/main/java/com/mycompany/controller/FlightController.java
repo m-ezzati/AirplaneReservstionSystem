@@ -31,19 +31,24 @@ public class FlightController {
     public String searchFlights(
             @RequestParam String origin,
             @RequestParam String destination,
-//            @RequestParam  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDateTime departureDate,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate departureDate,
             Model model
-            ){
+    ) {
 
-        List<FlightDTO> results = flightService.findByOriginAndDestination(origin, destination)
-                .stream()
+        List<Flight> flights;
+
+        if (departureDate == null) {
+            flights = flightService.findByOriginAndDestination(origin, destination);
+        } else {
+            LocalDateTime departureDateTime = departureDate.atStartOfDay();
+            flights = flightService.findByOriginAndDestinationAndDepartureDate(origin, destination, departureDateTime);
+        }
+
+        List<FlightDTO> results = flights.stream()
                 .map(flightMapper::toDto)
                 .toList();
 
-
         model.addAttribute("results", results);
-
-        System.out.println("result" +  results);
         return "results";
 
     }
