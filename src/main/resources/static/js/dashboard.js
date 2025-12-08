@@ -6,17 +6,14 @@
 
     let errors = [];
 
-    // 1) ساعت حرکت باید قبل از ساعت رسیدن باشد
     if (departure && arrival && new Date(departure) >= new Date(arrival)) {
     errors.push("Departure time must be earlier than arrival time.");
 }
 
-    // 2) قیمت نباید منفی یا صفر باشد
     if (price !== "" && Number(price) <= 0) {
     errors.push("Price must be greater than zero.");
 }
 
-    // اگر خطا وجود داشت ارسال نشود
     if (errors.length > 0) {
     e.preventDefault();
 

@@ -45,7 +45,7 @@ public class AdminDashboardController {
         if (result.hasErrors()) {
             return "add-flight";
         }
-        flightService.saveFlight(flightMapper.toEntity(dto));
+        flightService.saveFlight(dto);
 
         return "redirect:/admin/dashboard";
     }
