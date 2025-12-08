@@ -5,10 +5,15 @@ This project is a Flight Booking System built with Spring Boot, featuring secure
 🚀 Technologies Used
 
 Spring Boot
+
 Spring Security
+
 Spring Data JPA
+
 Hibernate Optimistic Locking
+
 PostgreSQL
+
 Gradle Wrapper (gradlew)
 
 📌 Features
