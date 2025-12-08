@@ -59,4 +59,7 @@ public class Flight extends BaseEntity {
         return reservedSeats < totalSeats;
     }
 
+    @Version
+    private Long version;
+
 }

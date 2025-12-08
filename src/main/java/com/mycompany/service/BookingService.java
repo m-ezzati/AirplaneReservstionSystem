@@ -3,6 +3,7 @@ package com.mycompany.service;
 import com.mycompany.model.Booking;
 import com.mycompany.model.Flight;
 import com.mycompany.repository.BookingRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class BookingService {
         this.bookingRepository = bookingRepository;
     }
 
+    @Transactional
     public void save(Booking booking) {
 
         Flight flight = booking.getFlight();
